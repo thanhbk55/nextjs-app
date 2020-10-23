@@ -1,6 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## DEMO
+### Rails側
+https://github.com/orcainc/homeup/pull/28481
+
+### Nginx設定
+- nginx install
+```
+brew install nginx
+sudo vi /usr/local/etc/nginx/nginx.conf
+
+events {
+    worker_connections  16;
+}
+
+http {
+    server {
+        listen       4000;
+        server_name  homeup.local;
+
+        location / {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $http_host;
+            proxy_set_header X-Forwarded-Port $server_port;
+            proxy_set_header X-Forwarded-Server $host;
+            proxy_set_header Origin http://$http_host;
+            proxy_redirect off;
+            proxy_ssl_session_reuse off;
+            proxy_pass http://homeup.local:3000;
+        }
+
+        location /new_cms {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $http_host;
+            proxy_set_header X-Forwarded-Port $server_port;
+            proxy_set_header X-Forwarded-Server $host;
+            proxy_set_header Origin http://$http_host;
+            proxy_redirect off;
+            proxy_ssl_session_reuse off;
+            proxy_pass http://homeup.local:9000;
+        }
+
+    }
+}
+
+```
+
+- `/etc/hosts`の設定
+```
+127.0.0.1 homeup.local
+127.0.0.1 localhost
+```
+
+### DEMOする
+- rails
+
+```
+rails s
+```
+
+- node
+
+```
+yarn dev -p 9000
+```
+
+- nginx
+
+```
+sudo nginx
+```
+
+- 結果
+  - `homeup.local:4000`にアクセスすると、Railsのページを表示される
+  - `homeup.local:4000/new_cms`にアクセスすると、Nodeのページを表示される
+    - Railsにログインした時
+      - `homeup.local:4000/new_cms/pages/page1`にアクセスすると、正常に表示される
+    - Railsにログインしない時
+      - `homeup.local:4000/new_cms/pages/page1`にアクセスすると、401エラーになります。
 
 ## Getting Started
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 First, run the development server:
 
