@@ -58,12 +58,14 @@ http {
 - rails
 
 ```
+bundle
 rails s
 ```
 
 - node
 
 ```
+yarn
 yarn dev -p 9000
 ```
 
