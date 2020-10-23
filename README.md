@@ -3,50 +3,8 @@
 https://github.com/orcainc/homeup/pull/28481
 
 ### Nginx設定
-- nginx install
-```
-brew install nginx
-sudo vi /usr/local/etc/nginx/nginx.conf
-
-events {
-    worker_connections  16;
-}
-
-http {
-    server {
-        listen       4000;
-        server_name  homeup.local;
-
-        location / {
-            proxy_set_header Host $http_host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Port $server_port;
-            proxy_set_header X-Forwarded-Server $host;
-            proxy_set_header Origin http://$http_host;
-            proxy_redirect off;
-            proxy_ssl_session_reuse off;
-            proxy_pass http://homeup.local:3000;
-        }
-
-        location /new_cms {
-            proxy_set_header Host $http_host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Host $http_host;
-            proxy_set_header X-Forwarded-Port $server_port;
-            proxy_set_header X-Forwarded-Server $host;
-            proxy_set_header Origin http://$http_host;
-            proxy_redirect off;
-            proxy_ssl_session_reuse off;
-            proxy_pass http://homeup.local:9000;
-        }
-
-    }
-}
-
-```
+- homeup-devのdockerを更新
+https://github.com/orcainc/homeup-dev/pull/44
 
 - `/etc/hosts`の設定
 ```
@@ -69,10 +27,10 @@ yarn
 yarn dev -p 9000
 ```
 
-- nginx
+- homeup-dev docker
 
 ```
-sudo nginx
+docker-compose up
 ```
 
 - 結果
