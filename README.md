@@ -1,6 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## DEMO
+### Rails側
+https://github.com/orcainc/homeup/pull/28481
+
+### Nginx設定
+- homeup-devのdockerを更新
+https://github.com/orcainc/homeup-dev/pull/44
+
+- `/etc/hosts`の設定
+```
+127.0.0.1 homeup.local
+127.0.0.1 localhost
+```
+
+### DEMOする
+- rails
+
+```
+bundle
+rails s
+```
+
+- node
+
+```
+yarn
+yarn dev -p 9000
+```
+
+- homeup-dev docker
+
+```
+docker-compose up
+```
+
+- 結果
+  - `homeup.local:4000`にアクセスすると、Railsのページを表示される
+  - `homeup.local:4000/new_cms`にアクセスすると、Nodeのページを表示される
+    - Railsにログインした時
+      - `homeup.local:4000/new_cms/pages/page1`にアクセスすると、正常に表示される
+    - Railsにログインしない時
+      - `homeup.local:4000/new_cms/pages/page1`にアクセスすると、401エラーになります。
 
 ## Getting Started
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 First, run the development server:
 
