@@ -51,6 +51,7 @@ export async function getStaticProps({params}) {
   return {
     props: {
       page: json
-    }
+    },
+    revalidate: 1
   };
 }
