@@ -1,15 +1,25 @@
-// import Head from 'next/head'
-
+import Link from 'next/link'
 export default function Home() {
 
   return (
     <div>
       CMS
       <br/>
-      <a href="/pages/page1">P1</a><br/>
-      <a href="/pages/page2">P2</a><br/>
-      <a href="/pages/page3">P3</a><br/>
-      <a href="/pages/page4">P4</a>
+      <Link href="/pages/page1">
+        <a>P1</a>
+      </Link>
+      <br/>
+      <Link href="/pages/page2">
+        <a>P2</a>
+      </Link>
+      <br/>
+      <Link href="/pages/page3">
+        <a>P3</a>
+      </Link>
+      <br/>
+      <Link href="/pages/page4">
+        <a>P4</a>
+      </Link>
     </div>
   )
 }
