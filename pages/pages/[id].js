@@ -1,4 +1,5 @@
 export default function Page({page}) {
+  console.log(page)
   return (
     <div>
       <h2>{page.name}</h2>
@@ -32,7 +33,7 @@ export async function getStaticPaths() {
   //   params: { id: j.name },
   // }))
 
-  const paths = [{name: "page0"},{name: "page1"},{name: "page2"},{name: "page3"},{name: "page4"}].map((j) => ({
+  const paths = [{name: "page1"},{name: "page2"},{name: "page3"},{name: "page4"}].map((j) => ({
     params: { id: j.name },
   }))
 
