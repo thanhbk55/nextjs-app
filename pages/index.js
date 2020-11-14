@@ -48,15 +48,15 @@ export default function Home() {
       
       <div>
         <h4>Page Access</h4>
-        <input id="link_input" placeholder="Enter link" onChange={(evt) => setGoLink(evt.target.value)}/>
+        <input id="link_input" placeholder="Page link (page1, page2...)" onChange={(evt) => setGoLink(evt.target.value)}/>
         <Link href={goLink ? `/pages/${goLink}`: ''}>
           <a onClick={() => document.getElementById("link_input").value = ""}>GO</a>
         </Link>
       </div>
       <div>
         <h4>Create Or Update</h4>
-        <input placeholder="Enter page name" onChange={(evt) => setName(evt.target.value)}/>
-        <input placeholder="Enter page content" onChange={(evt) => setContent(evt.target.value)}/>
+        <input placeholder="Page name(page1, page2...)" onChange={(evt) => setName(evt.target.value)}/>
+        <input placeholder="Page content" onChange={(evt) => setContent(evt.target.value)}/>
         <button onClick={() => createPage()}>Create</button>
         <button onClick={() => updatePage()}>Update</button>
       </div>
