@@ -13,19 +13,6 @@ export default function Page({page}) {
   )
 }
 
-// Page.getInitialProps = async ({query}) => {
-//   const url =
-//     process.env.NODE_ENV === "development"
-//       ? "http://localhost:3000"
-//       : "https://cms-refactor-nextjs-app.herokuapp.com";
-//   const res = await fetch(`${url}/api/pages/${query.id}`);
-//   const json = await res.json();
-  
-//   return {
-//     page: json
-//   };
-// }
-
 export async function getStaticPaths() {
   // const url =
   //   process.env.NODE_ENV === "development"
@@ -38,9 +25,9 @@ export async function getStaticPaths() {
   //   params: { id: j.name },
   // }))
 
-  const paths = [{name: "page1"},{name: "page2"},{name: "page3"},{name: "page4"}].map((j) => ({
-    params: { id: j.name },
-  }))
+  // const paths = [{name: "page1"},{name: "page2"},{name: "page3"},{name: "page4"}].map((j) => ({
+  //   params: { id: j.name },
+  // }))
 
   return { paths: [], fallback: true }
 }
@@ -56,6 +43,7 @@ export async function getStaticProps({params}) {
   return {
     props: {
       page: json
-    }
+    },
+    revalidate: 1
   };
 }
