@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <h4>Demo Page</h4>
+        <h4>Default Page</h4>
         <br/>
         <Link href="/pages/page1">
           <a>P1</a>
