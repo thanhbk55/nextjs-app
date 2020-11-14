@@ -1,5 +1,10 @@
+import { useRouter } from 'next/router';
+
 export default function Page({page}) {
-  console.log(page)
+  const { isFallback } = useRouter();
+  if(isFallback){
+    return <div>Building</div>
+  }
   return (
     <div>
       <h2>{page.name}</h2>
@@ -37,7 +42,7 @@ export async function getStaticPaths() {
     params: { id: j.name },
   }))
 
-  return { paths, fallback: false }
+  return { paths: [], fallback: true }
 }
 
 export async function getStaticProps({params}) {
@@ -51,7 +56,6 @@ export async function getStaticProps({params}) {
   return {
     props: {
       page: json
-    },
-    revalidate: 1
+    }
   };
 }
