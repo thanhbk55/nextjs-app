@@ -48,9 +48,9 @@ export default function Home() {
       
       <div>
         <h4>Page Access</h4>
-        <input placeholder="Enter link" onChange={(evt) => setGoLink(evt.target.value)}/>
-        <Link href={`/pages/${goLink}`}>
-          <a>GO</a>
+        <input id="link_input" placeholder="Enter link" onChange={(evt) => setGoLink(evt.target.value)}/>
+        <Link href={goLink ? `/pages/${goLink}`: ''}>
+          <a onClick={() => document.getElementById("link_input").value = ""}>GO</a>
         </Link>
       </div>
       <div>
