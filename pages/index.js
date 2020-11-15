@@ -4,6 +4,7 @@ export default function Home() {
   const [goLink, setGoLink] = useState("");
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
+  const [viewLink, setViewLink] = useState("");
   const createPage = async function() {
     const url =
     process.env.NODE_ENV === "development"
@@ -11,7 +12,8 @@ export default function Home() {
       : "https://nextjs-app-inky.vercel.app";
     const res = await fetch(`${url}/api/pages/create?name=${name}&content=${content}`);
     const json = await res.json();
-    alert("Success")
+    setViewLink(name);
+    alert("Success");
   }
 
   const updatePage = async function() {
@@ -21,6 +23,7 @@ export default function Home() {
       : "https://nextjs-app-inky.vercel.app";
     const res = await fetch(`${url}/api/pages/update?name=${name}&content=${content}`);
     const json = await res.json();
+    setViewLink(name);
     alert("Success")
   }
 
@@ -59,6 +62,10 @@ export default function Home() {
         <input placeholder="Page content" onChange={(evt) => setContent(evt.target.value)}/>
         <button onClick={() => createPage()}>Create</button>
         <button onClick={() => updatePage()}>Update</button>
+        <br/>
+        {viewLink && <a href={viewLink ? `/pages/${viewLink}`: ''}>
+          {viewLink}
+        </a>}
       </div>
     </div>
   )
