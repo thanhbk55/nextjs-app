@@ -7,6 +7,18 @@ export default function Page({page}) {
   }
   return (
     <div>
+      <style jsx>
+      {
+        `
+          body {
+            color: red;
+          }
+          h2 {
+            color: red;
+          }
+        `
+      }
+      </style>
       <h2>{page.name}</h2>
       <p>{page.content}</p>
     </div>
